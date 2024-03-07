@@ -80,9 +80,17 @@
             <Listbox required v-model="authority_1" :options="roles" optionLabel="name" class="form-control form-control-lg w-full md:w-14rem" />
         </div>
 
+        
+
     </div>
 
-    <button @click="$event => addUser(authority_1.name)" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" >Register</button>
+    <br>
+    <br>
+
+    <div class="b1">
+        <button @click="$event => addUser(authority_1.name)" >Register</button>
+    </div>
+    
 
 </div>
 </template>

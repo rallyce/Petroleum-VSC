@@ -45,6 +45,10 @@
     margin: auto;
 }
 
+#b1{
+    margin: auto;
+}
+
 .background-addUser{
     position: fixed;
     width: 100%;
@@ -55,4 +59,10 @@
     bottom:0;
     left:0;
 }
+
+.b1{
+    text-align: center;
+}
+
+
 
