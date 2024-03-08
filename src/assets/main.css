@@ -125,5 +125,19 @@ Button{
     
 }
 
+#power-1{
+    position: relative;
+    width: 700px;
+    bottom: 500px;
+    left: 1400px;
+}
+
+#power-2{
+    position: relative;
+    width: 700px;
+    bottom: 200px;
+    left: 1300px;
+}
+
 
 

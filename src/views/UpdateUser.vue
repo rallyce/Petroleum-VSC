@@ -15,7 +15,7 @@
 
 <template>
     <div class="background-addUser">
-    <h1 style="text-align: center;">Registrar nuevo usuario</h1>
+    <h1 style="text-align: center;">Actualizar usuario</h1>
     <br>
     <h2 style="text-align: center;">Informacion personal</h2>
     <br>
@@ -45,31 +45,6 @@
 
     <br>
     <br>
-    <h2 style="text-align: center;">Informacion de cuenta</h2>
-    <br>
-    <div class="datosUsuario2">
-        <div class="userName">
-            <InputGroup>
-            <InputGroupAddon>
-                <i class="pi pi-info-circle"></i>
-            </InputGroupAddon>
-            <InputText v-model="user_1" placeholder="Nombre de usuario" />
-            </InputGroup>
-
-        </div>
-
-        <br>
-        <br>
-        
-        <div class="password">
-            <Password v-model="value" placeholder="Contraseña" toggleMask    />
-
-        </div>
-
-        
-    </div>
-
-    <br>
     <br>
     <br>
 
@@ -90,7 +65,7 @@
     <div class="btn btn-success btn-block btn-lg b1">
         <Button @click="$event => addUser(authority_1.name)" label="Register"/>
     </div>
-    <img src="@/assets/images/power.png" id="power-1"/>
+    <img src="@/assets/images/checkUp.png" id="power-2"/>
 
 </div>
 </template>
@@ -103,7 +78,7 @@ const authority_1 = ref();
 
 export default {
 
-    name: 'addUser',
+    name: 'updateUser',
     data(){
         return {
             level: {

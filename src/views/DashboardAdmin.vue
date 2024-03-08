@@ -9,11 +9,6 @@ const items = ref([
 
 
     {
-        label: 'Inicio',
-        icon: 'pi pi-home',
-
-    },
-    {
         label: 'Agregar',
         icon: 'pi pi-plus-circle',
         items: [
@@ -27,22 +22,12 @@ const items = ref([
         ]
     },
     {
-        label: 'Actualizar',
-        icon: 'pi pi-search',
-        items: [
-            {
-                label: 'Usuario',
-                icon: 'pi pi-user-edit'
-            },
-            {
-                separator: true
-            }
-        ]
-    },
-    {
         label: 'Lista de empleados',
         icon: 'pi pi-database',
-        badge: 3
+        badge: 3,
+        command: () =>{
+            router.push('/updateUser')
+        }
     }
 ]);
 

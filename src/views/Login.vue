@@ -51,7 +51,7 @@
 <script>
 import { ref } from 'vue';
 
-const nombre = ref('Omar')
+const nombre = ref('Usuario')
 
 export {nombre}
 
