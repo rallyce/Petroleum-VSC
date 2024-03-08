@@ -87,8 +87,8 @@
     <br>
     <br>
 
-    <div class="b1">
-        <button @click="$event => addUser(authority_1.name)" >Register</button>
+    <div class="btn btn-success btn-block btn-lg b1">
+        <Button @click="$event => addUser(authority_1.name)" label="Register"/>
     </div>
     
 
@@ -125,6 +125,7 @@ export default {
             .then(data => {
                 console.log(data)
                 console.log(authority_1)
+                this.$router.push("/dashBoardAdmin")
             })
         }
     }

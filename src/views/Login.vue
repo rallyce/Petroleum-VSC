@@ -49,9 +49,23 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
+const nombre = ref('Omar')
+
+export {nombre}
+
 export default {
-    name: 'Login'
+    name: 'Login',
+
+    data(){
+      return{
+        nombre
+      }
+    }
 }
+
+
 
 
 </script>
