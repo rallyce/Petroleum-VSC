@@ -139,5 +139,32 @@ Button{
     left: 1300px;
 }
 
+/* ViewEmpleados CSS */
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #000000;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #191a6f;}
+  
+  #customers tr:hover {background-color: #18795f;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  
+
 
 

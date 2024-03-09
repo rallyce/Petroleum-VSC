@@ -18,43 +18,54 @@
     <h1 style="text-align: center;">Lista de Empleados</h1>
     <br>
     <br>
-    <table class="table">
+    <main>
+    <table id="customers">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Cargo</th>
+                    <th scope="col">Actualizacion</th>
+                    <th scope="col">Eliminacion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="empleado in empleados" :key="empleado.id">
+                <tr v-for="empleado in empleados" :key="empleado.username">
                     <td>{{ empleado.username }}</td>
                     <td>{{ empleado.role }}</td>
-                    <td>
-                        <button class="btn btn-danger mx-2" @click="$event => deleteEmpleado(empleado.id)">Delete</button>
+                    <td style="text-align: center;">
+                       <a href="/updateUser"><Button label="Actualizar" severity="info" @click="$event => getUsernameEmpleado(empleado.username)"/></a>
                     </td>
+                    <td style="text-align: center;">
+                        <Button label="Eliminar" severity="danger" @click="$event => deleteEmpleado(empleado.username)"/>
+                    </td>
+                    
                 </tr>
 
             </tbody>
         </table>
+    </main>
     <br>
     <br>
 
-    <img src="@/assets/images/checkUp.png" id="power-2"/>
 
 </div>
 </template>
 
 <script >
 
+const user_em = ref();
+
+export {user_em}
 
 export default {
 
     name: 'viewEmpleados',
     data(){
         return{
-            empleados: []
+            empleados: [],
         }
     },
+
     methods: {
         getEmpleados(){
             fetch('http://localhost:8080/users')
@@ -63,6 +74,11 @@ export default {
                 this.empleados = data
                 console.log(data)
             })
+        },
+
+        getUsernameEmpleado(username_empleado){
+            console.log(username_empleado)
+            user_em = username_empleado
         },
 
         deleteEmpleado(id){
@@ -82,7 +98,8 @@ export default {
         this.getEmpleados()
     }
 
+    
+
     }
 
-
-</script>  
+    </script>  

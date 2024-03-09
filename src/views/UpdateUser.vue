@@ -1,9 +1,6 @@
 <script setup>
     import { ref } from 'vue';
-
-    const value = ref(null);
-    const selectedRole = ref();
-    const username_1 = "hola"
+    import { user_em } from './ViewEmpleados.vue';
 
     const roles = ref([
     { name: 'ADMINISTRADOR', code: 'AM' },
@@ -26,7 +23,7 @@
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText placeholder="Nombres"  />
+            <InputText  v-model="user_em"/>
             </InputGroup>
 
         </div>
