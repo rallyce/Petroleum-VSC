@@ -2,10 +2,10 @@
     import { ref } from 'vue';
 
     const roles = ref([
-    { name: 'ADMINISTRADOR', code: 'AM' },
-    { name: 'AUXILIAR', code: 'AX' },
-    { name: 'TECNICO', code: 'TEC' },
-    { name: 'AYUDANTE'},
+      "ADMINISTRADOR",
+      'AUXILIAR' ,
+      'TECNICO',
+      'AYUDANTE',
 ])
 </script>
 
@@ -22,7 +22,7 @@
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText />
+            <InputText v-model="level.username" disabled="true"/>
             </InputGroup>
 
         </div>
@@ -38,7 +38,7 @@
     <h2 style="text-align: center;">Nivel de autorizacion</h2>
     <div class="dataAuthorization">
         <div class="authorization">
-            <Listbox required v-model="authority_1" :options="roles" optionLabel="name" class="form-control form-control-lg w-full md:w-14rem" />
+            <Listbox required v-model="level.role" :options="roles" class="form-control form-control-lg w-full md:w-14rem" />
         </div>
 
         
@@ -49,7 +49,7 @@
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => updateUser(authority_1.name)" label="Register"/>
+        <Button @click="$event => updateUser(level.username)" label="Register"/>
     </div>
     <img src="@/assets/images/checkUp.png" id="power-2"/>
 
@@ -59,8 +59,7 @@
 <script >
 
 
-const user_1 = null;
-const authority_1 = ref();
+const user_1 = ref();
 
 export default {
 
@@ -69,24 +68,23 @@ export default {
         return {
             level: {
                 username: user_1,
-
+                role: ''
             }
         }
     },
 
     methods: {
-
         getEmpleado(){
             fetch(`http://localhost:8080/users/${this.$route.params.username}`)
             .then(res => res.json())
             .then(data => {
-                this.empleados = data
-                console.log(data)
+                this.level = data
+                console.log(this.level)
             })
         },
 
         updateUser(id){
-            fetch(`http://localhost:8080/authority/${id}`, {
+            fetch(`http://localhost:8080/users/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -95,10 +93,14 @@ export default {
             })
             .then(data => {
                 console.log(data)
-                console.log(authority_1)
-                this.$router.push("/dashBoardAdmin")
+                console.log(this.level.role)
+                this.$router.push("/viewEmpleados")
             })
         }
+    },
+
+    beforeMount(){
+        this.getEmpleado()
     }
 }
 

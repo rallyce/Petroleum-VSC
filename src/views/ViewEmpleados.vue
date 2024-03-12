@@ -33,7 +33,7 @@
                     <td>{{ empleado.username }}</td>
                     <td>{{ empleado.role }}</td>
                     <td style="text-align: center;">
-                        <a href="/updateUser"><Button label="Actualizar" severity="info" @click="$event => {{user_em='gola'}}"/></a>
+                        <a :href="`/updateUser/${empleado.username}`"><Button label="Actualizar" severity="info"/></a>
                     </td>
                     <td style="text-align: center;">
                         <Button label="Eliminar" severity="danger" @click="$event => deleteEmpleado(empleado.username)"/>

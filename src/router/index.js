@@ -20,12 +20,12 @@ const router = createRouter({
       component: ()=> import('../views/AddUser.vue')
     },
     {
-      path: '/updateUser',
+      path: '/updateUser/:username',
       name: 'updateUser',
       component: ()=> import('../views/UpdateUser.vue')
     },
     {
-      path: '/viewEmpleados',
+      path: '/viewEmpleados/',
       name: 'viewEmpleados',
       component: ()=> import('../views/ViewEmpleados.vue')
     }
