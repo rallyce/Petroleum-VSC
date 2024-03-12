@@ -1,15 +1,11 @@
 <script setup>
     import { ref } from 'vue';
 
-    const value = ref(null);
-    const selectedRole = ref();
-    const username_1 = "hola"
-
     const roles = ref([
-    { name: 'ADMINISTRADOR', code: 'AM' },
-    { name: 'AUXILIAR', code: 'AX' },
-    { name: 'TECNICO', code: 'TEC' },
-    { name: 'AYUDANTE'},
+      "ADMINISTRADOR",
+      'AUXILIAR' ,
+      'TECNICO',
+      'AYUDANTE',
 ])
 </script>
 
@@ -27,16 +23,6 @@
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
             <InputText placeholder="Nombres"  />
-            </InputGroup>
-
-        </div>
-    
-        <div class="SName">
-            <InputGroup>
-            <InputGroupAddon>
-                <i class="pi pi-user"></i>
-            </InputGroupAddon>
-            <InputText placeholder="Apellidos" />
             </InputGroup>
 
         </div>
@@ -62,7 +48,7 @@
         <br>
         
         <div class="password">
-            <Password v-model="value" placeholder="Contraseña" toggleMask    />
+            <Password v-model="password_1" placeholder="Contraseña" toggleMask    />
 
         </div>
 
@@ -77,7 +63,7 @@
     <h2 style="text-align: center;">Nivel de autorizacion</h2>
     <div class="dataAuthorization">
         <div class="authorization">
-            <Listbox required v-model="authority_1" :options="roles" optionLabel="name" class="form-control form-control-lg w-full md:w-14rem" />
+            <Listbox v-model="authority1" :options="roles" class="form-control form-control-lg w-full md:w-14rem" />
         </div>
 
         
@@ -88,7 +74,7 @@
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => addUser(authority_1.name)" label="Register"/>
+        <Button @click="$event => addUser()" label="Register"/>
     </div>
     <img src="@/assets/images/power.png" id="power-1"/>
 
@@ -98,8 +84,9 @@
 <script >
 
 
-const user_1 = null;
-const authority_1 = ref();
+const user_1 = ref();
+const password_1 = ref();
+const authority1 = ref();
 
 export default {
 
@@ -108,15 +95,17 @@ export default {
         return {
             level: {
                 username: user_1,
+                password: password_1,
+                role: authority1
 
             }
         }
     },
 
     methods: {
-        addUser(id){
-            fetch(`http://localhost:8080/authority/${id}`, {
-                method: 'PUT',
+        addUser(){
+            fetch(`http://localhost:8080/users`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -124,8 +113,8 @@ export default {
             })
             .then(data => {
                 console.log(data)
-                console.log(authority_1)
-                this.$router.push("/dashBoardAdmin")
+                console.log(authority1)
+                this.$router.push("/viewEmpleados")
             })
         }
     }

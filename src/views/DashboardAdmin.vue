@@ -26,7 +26,7 @@ const items = ref([
         icon: 'pi pi-database',
         badge: 3,
         command: () =>{
-            router.push('/updateUser')
+            router.push('/viewEmpleados')
         }
     }
 ]);

@@ -78,21 +78,10 @@
 
 /* AddUser CSS */
 
-.datosUsuario1{
-    display: flex;
-    
-}
 
 .FName{
     width: 500px;
-    position: relative;
-    left: 400px;
-}
-
-.SName{
-    width: 500px;
-    position: relative;
-    left: 500px;
+    margin: auto;
 }
 
 .userName{

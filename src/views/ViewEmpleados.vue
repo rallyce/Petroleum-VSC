@@ -33,7 +33,7 @@
                     <td>{{ empleado.username }}</td>
                     <td>{{ empleado.role }}</td>
                     <td style="text-align: center;">
-                       <a href="/updateUser"><Button label="Actualizar" severity="info" @click="$event => getUsernameEmpleado(empleado.username)"/></a>
+                        <a href="/updateUser"><Button label="Actualizar" severity="info" @click="$event => {{user_em='gola'}}"/></a>
                     </td>
                     <td style="text-align: center;">
                         <Button label="Eliminar" severity="danger" @click="$event => deleteEmpleado(empleado.username)"/>
@@ -53,9 +53,7 @@
 
 <script >
 
-const user_em = ref();
 
-export {user_em}
 
 export default {
 
@@ -65,6 +63,7 @@ export default {
             empleados: [],
         }
     },
+
 
     methods: {
         getEmpleados(){
@@ -76,13 +75,8 @@ export default {
             })
         },
 
-        getUsernameEmpleado(username_empleado){
-            console.log(username_empleado)
-            user_em = username_empleado
-        },
-
-        deleteEmpleado(id){
-        fetch(`http://localhost:8080/users/${id}`,{
+        deleteEmpleado(username){
+        fetch(`http://localhost:8080/users/${username}`,{
             method: 'DELETE'
         })
         .then(data => {
@@ -101,5 +95,6 @@ export default {
     
 
     }
+
 
     </script>  

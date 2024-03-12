@@ -1,6 +1,5 @@
 <script setup>
     import { ref } from 'vue';
-    import { user_em } from './ViewEmpleados.vue';
 
     const roles = ref([
     { name: 'ADMINISTRADOR', code: 'AM' },
@@ -23,17 +22,7 @@
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText  v-model="user_em"/>
-            </InputGroup>
-
-        </div>
-    
-        <div class="SName">
-            <InputGroup>
-            <InputGroupAddon>
-                <i class="pi pi-user"></i>
-            </InputGroupAddon>
-            <InputText placeholder="Apellidos" />
+            <InputText />
             </InputGroup>
 
         </div>
@@ -60,7 +49,7 @@
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => addUser(authority_1.name)" label="Register"/>
+        <Button @click="$event => updateUser(authority_1.name)" label="Register"/>
     </div>
     <img src="@/assets/images/checkUp.png" id="power-2"/>
 
@@ -86,7 +75,17 @@ export default {
     },
 
     methods: {
-        addUser(id){
+
+        getEmpleado(){
+            fetch(`http://localhost:8080/users/${this.$route.params.username}`)
+            .then(res => res.json())
+            .then(data => {
+                this.empleados = data
+                console.log(data)
+            })
+        },
+
+        updateUser(id){
             fetch(`http://localhost:8080/authority/${id}`, {
                 method: 'PUT',
                 headers: {
