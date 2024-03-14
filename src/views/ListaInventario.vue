@@ -4,30 +4,30 @@
 
 <template>
     <div class="background-addUser">
-    <h1 style="text-align: center;">Lista de Empleados</h1>
+    <h1 style="text-align: center;">Lista de Productos</h1>
     <br>
     <br>
     <main>
     <table id="customers">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Pais</th>
-                    <th scope="col">Ciudad</th>
+                    <th scope="col">Nombre del producto</th>
+                    <th scope="col">Fecha de reporte</th>
+                    <th scope="col">Descripcion del evento</th>
                     <th scope="col">Actualizacion</th>
                     <th scope="col">Eliminacion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="empleado in empleados" :key="empleado.id">
-                    <td>{{ empleado.nombre }}</td>
-                    <td>{{ empleado.pais }}</td>
-                    <td>{{ empleado.ciudad }}</td>
+                <tr v-for="producto in productos" :key="producto.id">
+                    <td>{{ producto.producto }}</td>
+                    <td>{{ producto.fecha }}</td>
+                    <td>{{ producto.descripcion }}</td>
                     <td style="text-align: center;">
-                        <a :href="`/updateUser/${empleado.id}`"><Button label="Actualizar" severity="info"/></a>
+                        <a :href="`/updateUser/${producto.id}`"><Button label="Actualizar" severity="info"/></a>
                     </td>
                     <td style="text-align: center;">
-                        <Button label="Eliminar" severity="danger" @click="$event => deleteEmpleado(empleado.id)"/>
+                        <Button label="Eliminar" severity="danger" @click="$event => deleteEmpleado(producto.id)"/>
                     </td>
                     
                 </tr>
@@ -48,31 +48,31 @@
 
 export default {
 
-    name: 'viewEmpleados',
+    name: 'listaProductos',
     data(){
         return{
-            empleados: [],
+            productos: [],
         }
     },
 
 
     methods: {
-        getEmpleados(){
-            fetch('http://localhost:8080/empleado')
+        getProductos(){
+            fetch('http://localhost:8080/producto')
             .then(res => res.json())
             .then(data => {
-                this.empleados = data
+                this.productos = data
                 console.log(data)
             })
         },
 
         deleteEmpleado(id){
-        fetch(`http://localhost:8080/empleados/${id}`,{
+        fetch(`http://localhost:8080/producto/${id}`,{
             method: 'DELETE'
         })
         .then(data => {
             console.log(data)
-            this.getEmpleados
+            this.getProductos
         })
     }
     },
@@ -80,7 +80,7 @@ export default {
     
 
     beforeMount(){
-        this.getEmpleados()
+        this.getProductos()
     }
 
     

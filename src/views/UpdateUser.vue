@@ -22,11 +22,10 @@
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText v-model="level.username" disabled="true"/>
+            <InputText v-model="level.nombre" disabled="true"/>
             </InputGroup>
 
         </div>
-    
     </div>
 
     <br>
@@ -49,7 +48,7 @@
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => updateUser(level.username)" label="Register"/>
+        <Button @click="$event => updateUser(level.nombre)" label="Register"/>
     </div>
     <img src="@/assets/images/checkUp.png" id="power-2"/>
 
@@ -67,15 +66,16 @@ export default {
     data(){
         return {
             level: {
-                username: user_1,
-                role: ''
+                nombre: '',
+                pais: '',
+                ciudad: ''
             }
         }
     },
 
     methods: {
         getEmpleado(){
-            fetch(`http://localhost:8080/users/${this.$route.params.username}`)
+            fetch(`http://localhost:8080/empleado/${this.$route.params.id}`)
             .then(res => res.json())
             .then(data => {
                 this.level = data
@@ -84,7 +84,7 @@ export default {
         },
 
         updateUser(id){
-            fetch(`http://localhost:8080/users/${id}`, {
+            fetch(`http://localhost:8080/empleado/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

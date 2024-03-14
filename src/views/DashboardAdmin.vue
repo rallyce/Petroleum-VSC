@@ -28,6 +28,14 @@ const items = ref([
         command: () =>{
             router.push('/viewEmpleados')
         }
+    },
+    {
+        label: 'Lista de productos',
+        icon: 'pi pi-box',
+        badge: 3,
+        command: () =>{
+            router.push('/listaProductos')
+        }
     }
 ]);
 
