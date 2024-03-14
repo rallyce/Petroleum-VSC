@@ -136,7 +136,7 @@ Button{
 #power-1{
     position: relative;
     width: 700px;
-    bottom: 500px;
+    bottom: 400px;
     left: 1400px;
 }
 
@@ -145,6 +145,10 @@ Button{
     width: 700px;
     bottom: 200px;
     left: 1300px;
+}
+
+#countries{
+    text-align: center;
 }
 
 /* ViewEmpleados CSS */

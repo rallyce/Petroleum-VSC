@@ -1,17 +1,31 @@
 <script setup>
     import { ref } from 'vue';
 
-    const roles = ref([
-      "ADMINISTRADOR",
-      'AUXILIAR' ,
-      'TECNICO',
-      'AYUDANTE',
-])
+    const selectedCountry = ref();
+
+    const countries = ref([
+    'Colombia',
+    'Argentina',
+    'Mexico',
+    'Brasil',
+    'Chile'
+]);
+
+const selectedCity = ref();
+
+const cities = ref([
+    'Cartagena',
+    'Medellin',
+    'Bogota',
+    'Barrranquilla',
+    'Manizales'
+]);
+
 </script>
 
 <template>
     <div class="background-addUser">
-    <h1 style="text-align: center;">Registrar nuevo usuario</h1>
+    <h1 style="text-align: center;">Informacion personal del empleado</h1>
     <br>
     <h2 style="text-align: center;">Informacion personal</h2>
     <br>
@@ -22,7 +36,7 @@
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText placeholder="Nombres"  />
+            <InputText placeholder="Nombre completo"  />
             </InputGroup>
 
         </div>
@@ -31,50 +45,31 @@
 
     <br>
     <br>
-    <h2 style="text-align: center;">Informacion de cuenta</h2>
+    <h2 style="text-align: center;">Informacion de residencia</h2>
     <br>
     <div class="datosUsuario2">
-        <div class="userName">
-            <InputGroup>
-            <InputGroupAddon>
-                <i class="pi pi-info-circle"></i>
-            </InputGroupAddon>
-            <InputText v-model="user_1" placeholder="Nombre de usuario" />
-            </InputGroup>
-
+ 
+        <div class="card flex justify-content-center" id="countries">
+            <h3>Pais:</h3>
+            <Dropdown v-model="selectedCountry" :options="countries" placeholder="Seleccione un pais" class="w-full md:w-14rem" />
+            <br>
+            <br>
+            <h3>Ciudad:</h3>
+            <Dropdown v-model="selectedCity" :options="cities" placeholder="Seleccione una ciudad" class="w-full md:w-14rem" />
         </div>
 
         <br>
         <br>
         
-        <div class="password">
-            <Password v-model="password_1" placeholder="Contraseña" toggleMask    />
-
-        </div>
 
         
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-    
-    <h2 style="text-align: center;">Nivel de autorizacion</h2>
-    <div class="dataAuthorization">
-        <div class="authorization">
-            <Listbox v-model="authority1" :options="roles" class="form-control form-control-lg w-full md:w-14rem" />
-        </div>
-
-        
-
-    </div>
+    </div>   
 
     <br>
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => addUser()" label="Register"/>
+        <Button @click="$event => addUser()" label="Guardar datos"/>
     </div>
     <img src="@/assets/images/power.png" id="power-1"/>
 

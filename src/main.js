@@ -18,6 +18,7 @@ import InputGroup from 'primevue/inputgroup';
 import InputGroupAddon from 'primevue/inputgroupaddon';
 import Password from 'primevue/password';
 import Listbox from 'primevue/listbox';
+import Dropdown from 'primevue/dropdown';
 
 const app = createApp(App)
 
@@ -36,5 +37,6 @@ app.component('InputGroup', InputGroup)
 app.component('InputGroupAddon', InputGroupAddon)
 app.component('Password', Password)
 app.component('Listbox', Listbox)
+app.component('Dropdown', Dropdown)
 
 app.mount('#app')
