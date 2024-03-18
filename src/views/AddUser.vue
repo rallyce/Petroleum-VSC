@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue';
 
-    const selectedCountry = ref();
+    
 
     const countries = ref([
     'Colombia',
@@ -11,14 +11,18 @@
     'Chile'
 ]);
 
-const selectedCity = ref();
-
 const cities = ref([
     'Cartagena',
     'Medellin',
     'Bogota',
     'Barrranquilla',
     'Manizales'
+]);
+
+const permisos = ref([
+    'ADMINISTRADOR',
+    'AUXILIAR',
+    'TECNICO'
 ]);
 
 </script>
@@ -29,48 +33,88 @@ const cities = ref([
     <br>
     <h2 style="text-align: center;">Informacion personal</h2>
     <br>
-
+        
+    <form @submit.prevent="addUser()">
     <div class="datosUsuario1">
         <div class="FName">
             <InputGroup>
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText placeholder="Nombre completo"  />
+            <InputText v-model="level.nombre" placeholder="Nombre completo" required />
             </InputGroup>
 
+        </div>
+
+        <br>
+
+        <div class="card flex justify-content-center" id="countries">
+            <h3>Pais:</h3>
+            <Dropdown v-model="level.pais" :options="countries" placeholder="Seleccione un pais" class="w-full md:w-14rem" />
+            <br>
+            <br>
+            <h3>Ciudad:</h3>
+            <Dropdown v-model="level.ciudad" :options="cities" placeholder="Seleccione una ciudad" class="w-full md:w-14rem" />
         </div>
     
     </div>
 
     <br>
     <br>
-    <h2 style="text-align: center;">Informacion de residencia</h2>
+    <h2 style="text-align: center;">Informacion de cuenta</h2>
     <br>
+
+    
     <div class="datosUsuario2">
- 
-        <div class="card flex justify-content-center" id="countries">
-            <h3>Pais:</h3>
-            <Dropdown v-model="selectedCountry" :options="countries" placeholder="Seleccione un pais" class="w-full md:w-14rem" />
-            <br>
-            <br>
-            <h3>Ciudad:</h3>
-            <Dropdown v-model="selectedCity" :options="cities" placeholder="Seleccione una ciudad" class="w-full md:w-14rem" />
+        <div class="FName"> 
+        <InputGroup>
+            <InputGroupAddon>
+                <i class="pi pi-user"></i>
+            </InputGroupAddon>
+            <InputText placeholder="Nombre de usuario" required />
+        </InputGroup>
+        </div>
+        <br>
+
+        <div class="password">
+        <Password v-model="level.password" placeholder="Contraseña" required  toggleMask  />
         </div>
 
+
         <br>
         <br>
         
 
         
-    </div>   
+    </div> 
+    
+    <div class="password">
+        <h2 style="text-align: center;">Nivel de permisos</h2>
+        <br>
+
+ 
+        <Dropdown  v-model="level.pais" :options="permisos" placeholder="Seleccione un nivel de autorizacion" class="w-full md:w-14rem" />
+        
+    </div>
 
     <br>
     <br>
 
     <div class="btn btn-success btn-block btn-lg b1">
-        <Button @click="$event => addUser()" label="Guardar datos"/>
+        <Button type="submit" label="Crear cuenta"/>
     </div>
+
+    </form>
+
+    <div class="btn btn-success btn-block btn-lg b1">
+        
+        
+            
+    </div>
+
+    <div v-if="warn_1 != ''"><h2>Hola</h2></div>
+    
+
     <img src="@/assets/images/power.png" id="power-1"/>
 
 </div>
@@ -78,10 +122,8 @@ const cities = ref([
 
 <script >
 
+let warn_1 = ref('')
 
-const user_1 = ref();
-const password_1 = ref();
-const authority1 = ref();
 
 export default {
 
@@ -89,17 +131,19 @@ export default {
     data(){
         return {
             level: {
-                username: user_1,
-                password: password_1,
-                role: authority1
-
+                nombre: '',
+                pais: '',
+                ciudad: '',
+                username: '',
+                password: '',
+                role: '',
             }
         }
     },
 
     methods: {
         addUser(){
-            fetch(`http://localhost:8080/users`, {
+            fetch(`http://localhost:8080/empleado`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -108,9 +152,12 @@ export default {
             })
             .then(data => {
                 console.log(data)
-                console.log(authority1)
                 this.$router.push("/viewEmpleados")
             })
+        },
+
+        example(){
+            this.$router.push("/viewEmpleados")
         }
     }
 }
