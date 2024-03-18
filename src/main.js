@@ -19,6 +19,8 @@ import InputGroupAddon from 'primevue/inputgroupaddon';
 import Password from 'primevue/password';
 import Listbox from 'primevue/listbox';
 import Dropdown from 'primevue/dropdown';
+import FloatLabel from 'primevue/floatlabel';
+import Textarea from 'primevue/textarea';
 
 const app = createApp(App)
 
@@ -38,5 +40,8 @@ app.component('InputGroupAddon', InputGroupAddon)
 app.component('Password', Password)
 app.component('Listbox', Listbox)
 app.component('Dropdown', Dropdown)
+app.component('FloatLabel', FloatLabel)
+app.component('Textarea', Textarea)
+
 
 app.mount('#app')

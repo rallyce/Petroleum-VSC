@@ -177,8 +177,26 @@ Button{
     color: white;
   }
 
-  /* ListaProductos CSS */
+  /* AgregarProducto CSS */
 
+  .d-producto{
+    position: absolute;
+    display: flex;
+    left: 620px;
+  }
+
+  #label-1{
+    color: white;
+  }
+
+  #package-1{
+    position: relative;
+    width: 600px;
+    bottom: 70px;
+    left: 1350px;
+  }
+
+ 
   
 
 

@@ -17,7 +17,19 @@ const items = ref([
                 icon: 'pi pi-user-plus',
                 command: () => {
                 router.push('/addUser');
+
+                
         }
+            },
+            
+            {
+
+                label: 'Nuevo producto',
+                icon: 'pi pi-plus-circle',
+                command: () => {
+                router.push('/AgregarProducto');
+                }
+
             }
         ]
     },

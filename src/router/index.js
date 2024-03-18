@@ -33,6 +33,12 @@ const router = createRouter({
       path: '/listaProductos',
       name: 'listaProductos',
       component: ()=> import('../views/ListaInventario.vue')
+    },
+
+    {
+      path: '/agregarProducto',
+      name: 'agregarProducto',
+      component: ()=> import('../views/AgregarProducto.vue')
     }
   ]
 })
