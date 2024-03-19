@@ -71,7 +71,7 @@ const permisos = ref([
             <InputGroupAddon>
                 <i class="pi pi-user"></i>
             </InputGroupAddon>
-            <InputText placeholder="Nombre de usuario" required />
+            <InputText v-model="level.username" placeholder="Nombre de usuario" required />
         </InputGroup>
         </div>
         <br>
@@ -93,7 +93,7 @@ const permisos = ref([
         <br>
 
  
-        <Dropdown  v-model="level.pais" :options="permisos" placeholder="Seleccione un nivel de autorizacion" class="w-full md:w-14rem" />
+        <Dropdown  v-model="level.role" :options="permisos" placeholder="Seleccione un nivel de autorizacion" class="w-full md:w-14rem" />
         
     </div>
 

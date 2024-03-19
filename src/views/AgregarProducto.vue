@@ -15,10 +15,11 @@ const maquinas = ref([
     <h1 style="text-align: center;">Registro de producto</h1>
     <br>
 
+    <form @submit.prevent="addProducto(producto.id)">
     <div class="FName"> 
         <InputGroup>
             <InputGroupAddon>
-                <i class="pi pi-user"></i>
+                <i class="pi pi-file-edit"></i>
             </InputGroupAddon>
             <InputText v-model="producto.id" placeholder="ID del producto" required />
         </InputGroup>
@@ -41,7 +42,7 @@ const maquinas = ref([
             <InputGroupAddon>
                 <i class="pi pi-cog"></i>
             </InputGroupAddon>
-            <InputText v-model="producto.id" placeholder="Nombre del producto/pieza" required />
+            <InputText v-model="producto.producto" placeholder="Nombre del producto/pieza" required />
         </InputGroup>
         </div> 
         
@@ -54,13 +55,14 @@ const maquinas = ref([
             <InputGroupAddon>
                 <i class="pi pi-calendar"></i>
             </InputGroupAddon>
-            <InputText v-model="producto.id" placeholder="Fecha de registro" required />
+            <InputText v-model="producto.fecha" placeholder="Fecha de registro" required />
         </InputGroup>
         </div>
         
         <br>
-        <br>
-        <br>
+        <div class="btn btn-success btn-block btn-lg b2">
+        <Button type="submit" label="Registrar Producto"/>
+        </div>
         
         <div class="d-producto">
         <FloatLabel>
@@ -69,8 +71,13 @@ const maquinas = ref([
         </FloatLabel>
         </div>
 
+        
+
         <img src="@/assets/images/package2.png" id="package-1"/>
 
+        
+
+    </form>
     </div>
 </template>
 
@@ -82,13 +89,38 @@ export default {
         return {
             producto: {
                 id: '',
+                informanteId: {
+                    id: 4,
+                    nombre: 'Omar',
+                    correo: 'example@ex.com'
+
+                },
                 maquina: '',
                 producto: '',
                 fecha: '',
                 descripcion: ''
             }
         }
+    },
+
+    methods: {
+        addProducto(id){
+            fetch(`http://localhost:8080/producto/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.producto)
+            })
+            .then(data => {
+                console.log(data)
+                this.$router.push("/listaProductos")
+            })
+        }
+
     }
+
+    
 }
 
 </script>
