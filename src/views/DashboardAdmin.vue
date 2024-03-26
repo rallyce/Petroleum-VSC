@@ -1,7 +1,6 @@
 <script setup >
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
-import { nombre } from "@/views/Login.vue"
 
 const router = useRouter();
 
@@ -145,7 +144,7 @@ const items = ref([
     
 </div>
 
-<h1 class="welcome-1">Bienvenido {{ nombre }}!</h1>
+<h1 class="welcome-1">Bienvenido!</h1>
 </div>
 
 

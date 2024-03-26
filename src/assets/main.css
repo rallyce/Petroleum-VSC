@@ -1,3 +1,5 @@
+ /* Login */
+
 .gradient-custom {
     position: fixed;
     width: 100%;
@@ -23,6 +25,10 @@
     position: relative;
     bottom: 25px;
 }
+
+.error-feedback {
+    color: red;
+  }
 
 
  /* DashBoard Css */

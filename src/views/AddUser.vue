@@ -143,7 +143,7 @@ export default {
 
     methods: {
         addUser(){
-            fetch(`http://localhost:8080/empleado`, {
+            fetch(`http://localhost:8080/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

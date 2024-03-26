@@ -58,7 +58,7 @@ export default {
 
     methods: {
         getEmpleados(){
-            fetch('http://localhost:8080/empleado')
+            fetch('http://localhost:8080/employee/empleado')
             .then(res => res.json())
             .then(data => {
                 this.empleados = data
@@ -67,7 +67,7 @@ export default {
         },
 
         deleteEmpleado(id){
-        fetch(`http://localhost:8080/empleados/${id}`,{
+        fetch(`http://localhost:8080/employee/empleados/${id}`,{
             method: 'DELETE'
         })
         .then(data => {

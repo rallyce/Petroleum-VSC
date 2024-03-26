@@ -12,21 +12,43 @@
               <h2 class="fw-bold mb-2 text-uppercase">Inicio de sesion</h2>
               <p class="text-white-100 mb-5">Por favor ingrese su nombre de usuario y contraseña</p>
 
-  
+              <Form @submit="handleLogin" :validation-schema="schema">
+              <div class="form-group">
               <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">Usuario</label>
+                <label class="form-label" for="username">Usuario</label>
+                <Field name="username" type="text" id="typeEmailX" class="form-control form-control-lg" />
+                <ErrorMessage name="username" class="error-feedback" />
+              </div>
               </div>
 
+              <div class="form-group">
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">Contraseña</label>
+                <label class="form-label" for="username">Contraseña</label>
+                <Field name="password" type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <ErrorMessage name="password" class="error-feedback" />
+              </div>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Olvidaste tu contraseña?</a></p>
 
-              <a href="/dashBoardAdmin" class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</a>
+              <div class="form-group">
+              <button class="btn btn-outline-light btn-lg px-5" :disabled="loading">
+                <span
+                  v-show="loading"
+                  class="spinner-border spinner-border-sm">
+                </span>
 
+              <span>Ingresar</span>
+              </button>
+            </div>
+
+              <div class="form-group">
+                <div v-if="message" class="alert alert-danger" role="alert">
+                  {{ message }}
+                </div>
+              </div>
+
+            </Form>
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
                 <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
@@ -49,20 +71,60 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
-const nombre = ref('Usuario')
-
-export {nombre}
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 
 export default {
     name: 'Login',
+    
+    components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    const schema = yup.object().shape({
+      username: yup.string().required("Se requiere ingresar el nombre de usuario o correo!"),
+      password: yup.string().required("Se requiere ingresar la contraseña!"),
+    });
 
-    data(){
-      return{
-        nombre
-      }
+    return {
+      loading: false,
+      message: "",
+      schema,
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push("/dashBoardAdmin");
     }
+  },
+  methods: {
+    handleLogin(user) {
+      this.loading = true;
+
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+          this.$router.push("/dashBoardAdmin");
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+  },
+
 }
 
 
